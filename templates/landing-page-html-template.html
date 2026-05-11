@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{PAGE_TITLE}}</title>
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --primary: #38bdf8;
+      --primary-dark: #0284c7;
+      --border: #e5e7eb;
+      --radius: 24px;
+      --shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+      --max: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 40px, var(--max));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 96px 0;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.2;
+      margin: 0 0 20px;
+      letter-spacing: -0.04em;
+    }
+
+    .section-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      background: var(--primary-dark);
+      color: #ffffff;
+      box-shadow: 0 12px 30px rgba(2, 132, 199, 0.25);
+    }
+
+    .btn.secondary {
+      background: #ffffff;
+      color: var(--primary-dark);
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247, 249, 252, 0.86);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 120px 0 96px;
+      background:
+        radial-gradient(circle at top right, rgba(56, 189, 248, 0.2), transparent 36%),
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      margin-bottom: 20px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.7rem, 6vw, 5rem);
+      line-height: 1.08;
+      letter-spacing: -0.06em;
+      margin: 0 0 24px;
+    }
+
+    .hero p {
+      font-size: 1.18rem;
+      color: var(--muted);
+      margin: 0 0 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .visual-box {
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #ffffff, #e0f2fe);
+      border-radius: 36px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 32px;
+    }
+
+    .visual-box-inner {
+      width: 100%;
+      display: grid;
+      gap: 16px;
+    }
+
+    .mini-card {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .process {
+      counter-reset: step;
+    }
+
+    .process .card {
+      position: relative;
+    }
+
+    .process .card::before {
+      counter-increment: step;
+      content: counter(step);
+      display: inline-grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      margin-bottom: 20px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 800;
+    }
+
+    .faq-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .faq-item h3 {
+      margin: 0 0 8px;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .final-cta {
+      text-align: center;
+      background: #0f172a;
+      color: #ffffff;
+      border-radius: 40px;
+      padding: 72px 32px;
+    }
+
+    .final-cta p {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    footer {
+      padding: 40px 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding: 88px 0 72px;
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .visual-box {
+        min-height: 280px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        width: min(100% - 28px, var(--max));
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .card {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">{{BRAND_NAME}}</a>
+      <nav class="nav-links">
+        <a href="#problem">문제</a>
+        <a href="#solution">해결</a>
+        <a href="#process">진행방식</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">{{EYEBROW}}</span>
+        <h1>{{HERO_HEADLINE}}</h1>
+        <p>{{HERO_SUBTEXT}}</p>
+        <div class="hero-actions">
+          <a href="{{CTA_LINK}}" class="btn">{{MAIN_CTA}}</a>
+          <a href="#solution" class="btn secondary">{{SUB_CTA}}</a>
+        </div>
+      </div>
+
+      <div class="visual-box">
+        <div class="visual-box-inner">
+          <div class="mini-card">{{VISUAL_POINT_1}}</div>
+          <div class="mini-card">{{VISUAL_POINT_2}}</div>
+          <div class="mini-card">{{VISUAL_POINT_3}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section id="problem" class="section">
+    <div class="container">
+      <h2 class="section-title">{{PROBLEM_TITLE}}</h2>
+      <p class="section-desc">{{PROBLEM_DESC}}</p>
+      <div class="grid-3">
+        <div class="card">{{PROBLEM_1}}</div>
+        <div class="card">{{PROBLEM_2}}</div>
+        <div class="card">{{PROBLEM_3}}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solution -->
+  <section id="solution" class="section">
+    <div class="container">
+      <h2 class="section-title">{{SOLUTION_TITLE}}</h2>
+      <p class="section-desc">{{SOLUTION_DESC}}</p>
+      <div class="grid-2">
+        <div class="card">{{BENEFIT_1}}</div>
+        <div class="card">{{BENEFIT_2}}</div>
+        <div class="card">{{BENEFIT_3}}</div>
+        <div class="card">{{BENEFIT_4}}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Differentiation -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">{{DIFFERENTIATION_TITLE}}</h2>
+      <div class="grid-3">
+        <div class="card">{{DIFFERENTIATION_1}}</div>
+        <div class="card">{{DIFFERENTIATION_2}}</div>
+        <div class="card">{{DIFFERENTIATION_3}}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="section process">
+    <div class="container">
+      <h2 class="section-title">{{PROCESS_TITLE}}</h2>
+      <div class="grid-3">
+        <div class="card">{{PROCESS_1}}</div>
+        <div class="card">{{PROCESS_2}}</div>
+        <div class="card">{{PROCESS_3}}</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+    <div class="container">
+      <h2 class="section-title">자주 묻는 질문</h2>
+      <div class="faq-item">
+        <h3>{{FAQ_Q1}}</h3>
+        <p>{{FAQ_A1}}</p>
+      </div>
+      <div class="faq-item">
+        <h3>{{FAQ_Q2}}</h3>
+        <p>{{FAQ_A2}}</p>
+      </div>
+      <div class="faq-item">
+        <h3>{{FAQ_Q3}}</h3>
+        <p>{{FAQ_A3}}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="final-cta">
+        <h2 class="section-title">{{FINAL_CTA_TITLE}}</h2>
+        <p>{{FINAL_CTA_DESC}}</p>
+        <a href="{{CTA_LINK}}" class="btn">{{FINAL_CTA_BUTTON}}</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © {{BRAND_NAME}}. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
