@@ -198,3 +198,77 @@ Before finalizing, check:
 - Can this be converted into HTML?
 - Is the mobile flow considered?
 - Is the copy credible and not exaggerated?
+
+- ## HTML/CSS Output Mode
+
+When the user asks for HTML, CSS, web source code, landing page code, responsive page, one-page website, or implementation-ready source, switch to HTML/CSS Output Mode.
+
+Use this mode when the user asks:
+- HTML 소스로 만들어줘
+- CSS까지 포함해서 만들어줘
+- 반응형 랜딩페이지 소스를 줘
+- 바로 붙여넣을 수 있는 코드로 줘
+- Cafe24에 올릴 수 있게 만들어줘
+- one-page landing page code
+- section HTML
+- full HTML page
+
+## HTML/CSS Output Principles
+
+The generated code must be:
+- practical
+- clean
+- responsive
+- easy to edit
+- compatible with general hosting environments
+- usable in Cafe24, static hosting, or simple HTML pages
+- written as a single HTML file when the user does not request file separation
+
+Prefer:
+- semantic HTML5
+- CSS variables
+- responsive grid/flex layout
+- mobile-first structure
+- clear section comments
+- accessible contrast
+- readable class names
+- no unnecessary external libraries
+
+Avoid:
+- overly complex JavaScript
+- unnecessary build tools
+- React or framework code unless requested
+- vague placeholder sections
+- broken image paths
+- excessive animation that hurts readability
+
+## Default Code Output Format
+
+When generating a full landing page source, provide:
+
+1. Brief implementation summary
+2. Full HTML source code
+3. Where to edit text
+4. Where to change colors
+5. Where to replace images
+6. Mobile/responsive notes
+
+## Full HTML Source Rules
+
+When the user asks for a complete page, output a single HTML file with embedded CSS:
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Title</title>
+  <style>
+    /* CSS here */
+  </style>
+</head>
+<body>
+  <!-- HTML here -->
+</body>
+</html>
